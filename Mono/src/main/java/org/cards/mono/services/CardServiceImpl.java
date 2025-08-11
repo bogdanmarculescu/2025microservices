@@ -6,9 +6,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.cards.mono.model.Card;
 import org.springframework.stereotype.Service;
+import org.springframework.core.io.ClassPathResource;
 
-import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -22,10 +23,10 @@ public class CardServiceImpl implements CardService {
 
     public CardServiceImpl(){
         ObjectMapper mapper = new ObjectMapper();
-        File jsonFile = new File("Mono/src/main/resources/cards.json");
+        //File jsonFile = new File("Mono/src/main/resources/cards.json");
 
-        try{
-            List<Card> readDeck = mapper.readValue(jsonFile, new TypeReference<List<Card>>() {});
+        try (InputStream inputStream = new ClassPathResource("cards.json").getInputStream()){
+            List<Card> readDeck = mapper.readValue(inputStream, new TypeReference<List<Card>>() {});
             Long id = 1L;
             for(Card card: readDeck) {
                 System.out.println("Key" + id + ": " + card);
