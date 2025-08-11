@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/mono")
+@RequestMapping("/api/mono")
 public class MonoController {
     private final MonoServicesImpl monoService;
 
