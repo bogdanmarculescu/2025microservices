@@ -19,8 +19,7 @@ public class MonoServicesImpl implements MonoServices {
     public Round getNewRound() {
         Round round = new Round();
 
-        HashMap<Long, Card> cards = new HashMap<>();
-        cards = cardService.getCards(7);
+        HashMap<Long, Card> cards = cardService.getCards(7);
 
         //3 cards to player
         round.getPlayerCards().put(Long.valueOf(1), cards.get(Long.valueOf(1)));
@@ -33,6 +32,9 @@ public class MonoServicesImpl implements MonoServices {
         round.getAutomaCards().put(Long.valueOf(3), cards.get(Long.valueOf(6)));
 
         round.setTopic(cards.get(Long.valueOf(7)));
+
+        //TODO: better id handling, obviously
+        round.setId(Long.valueOf(42));
 
         return round ;
 

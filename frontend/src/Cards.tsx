@@ -1,6 +1,7 @@
 import {useEffect, useState} from 'react'
 import './App.css'
 import {getCardImage} from "./utils/getCardImage.tsx";
+import DropZone from "./components/DropZone";
 
 function Cards() {
     const [loading, setLoading] = useState(true);
@@ -8,6 +9,7 @@ function Cards() {
 
     const [round, setRound] = useState(null);
     const [topic, setTopic] = useState(null);
+    const [roundId, setRoundId] = useState(null);
     const [playerHand, setPlayerHand] = useState([]);
 
     const [playedCard, setPlayedCard] = useState(null);
@@ -23,6 +25,7 @@ function Cards() {
                 const result = await response.json();
                 setRound(result);
                 setTopic(result.topic);
+                setRoundId(result.id);
                 setPlayerHand(Object.values(result.playerCards));
             } catch (err){
                 // @ts-ignore
@@ -80,8 +83,10 @@ function Cards() {
         if (!card) return;
 
         if (type === "played") {
+            if (playedCard) setPlayerHand((prev) => [...prev, playedCard]);
             setPlayedCard(card);
         } else if (type === "bid") {
+            if (bidCard) setPlayerHand((prev) => [...prev, bidCard]);
             setBidCard(card);
         }
 
@@ -91,12 +96,48 @@ function Cards() {
 
     const allowDrop = (e) => e.preventDefault();
 
+    // Submit selection
+    const handleSubmit = () => {
+        if (!playedCard || !bidCard) {
+            alert("Please select both a Played card and a Bid card!");
+            return;
+        }
+
+        fetch("http://localhost:8000/api/mono/submitMove", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ roundId, playedCard, bidCard }),
+        })
+            .then((res) => {
+                if (res.ok) {
+                    alert("Move submitted!");
+                } else {
+                    alert("Error submitting move.");
+                }
+            })
+            .catch(() => alert("Network error submitting move."));
+    };
+
     // @ts-ignore
     return (
-            <>
-                <div>
+            <div style={{ padding: "20px" }}>
+                <button
+                    onClick={handleSubmit}
+                    style={{
+                        marginTop: "40px",
+                        padding: "10px 20px",
+                        fontSize: "16px",
+                        cursor: "pointer",
+                    }}
+                >
+                    Submit Move
+                </button>
+                <div >
                     <h1> Topic Card: </h1>
-                    <img src={topicCardImage} alt={topic}/>
+                    <img src={topicCardImage}
+                         alt={topic}
+                         style={{ width: "100px" }}
+                    />
                 </div>
 
                 {/* Player Hand */}
@@ -140,56 +181,19 @@ function Cards() {
                 <div style={{ marginTop: "40px", display: "flex", gap: "40px" }}>
 
                     {/* Played Card Area */}
-                    <div
+                    <DropZone
+                        label="PlayedCard"
+                        card={playedCard}
                         onDrop={(e) => handleDrop(e, "played")}
-                        onDragOver={allowDrop}
-                        style={{
-                            border: "2px dashed gray",
-                            borderRadius: "8px",
-                            width: "150px",
-                            height: "200px",
-                            display: "flex",
-                            justifyContent: "center",
-                            alignItems: "center",
-                        }}
-                    >
-                        {playedCard ? (
-                            <img
-                                src={getCardImage(playedCard.filename)}
-                                alt="Played card"
-                                style={{ width: "100px" }}
-                            />
-                        ) : (
-                            <span>Played Card</span>
-                        )}
-                    </div>
-
-                {/* Bid Card Area */}
-                <div
-                    onDrop={(e) => handleDrop(e, "bid")}
-                    onDragOver={allowDrop}
-                    style={{
-                        border: "2px dashed gray",
-                        borderRadius: "8px",
-                        width: "150px",
-                        height: "200px",
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                    }}
-                >
-                    {bidCard ? (
-                        <img
-                            src={getCardImage(bidCard.filename)}
-                            alt="Bid card"
-                            style={{ width: "100px" }}
-                        />
-                    ) : (
-                        <span>Bid Card</span>
-                    )}
+                    />
+                    {/* Bid Card Area */}
+                    <DropZone
+                        label="Bid Card"
+                        card={bidCard}
+                        onDrop={(e) => handleDrop(e, "bid")}
+                    />
                 </div>
-                </div>
-            </>
+            </div>
         );
 }
 
