@@ -49,6 +49,7 @@ public class CardServiceImpl implements CardService {
         for(int i = 1; i <= number; i++){
             result.put(Long.valueOf(i), shuffled.get(i));
         }
+        log.debug(result.toString());
         return result;
     }
 }

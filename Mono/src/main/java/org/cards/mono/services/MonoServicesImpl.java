@@ -2,6 +2,7 @@ package org.cards.mono.services;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.cards.mono.clients.CardClient;
 import org.cards.mono.model.Card;
 import org.cards.mono.model.Round;
 import org.springframework.stereotype.Service;
@@ -13,13 +14,15 @@ import java.util.HashMap;
 @RequiredArgsConstructor
 public class MonoServicesImpl implements MonoServices {
 
-    private final CardServiceImpl cardService;
+    //Not an option for long
+    private final CardClient cardClient;
 
     @Override
     public Round getNewRound() {
         Round round = new Round();
 
-        HashMap<Long, Card> cards = cardService.getCards(7);
+        HashMap<Long, Card> cards = cardClient.getCards(7);
+        System.out.println("Cards: " + cards);
 
         //3 cards to player
         round.getPlayerCards().put(Long.valueOf(1), cards.get(Long.valueOf(1)));

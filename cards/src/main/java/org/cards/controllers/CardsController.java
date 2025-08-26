@@ -18,8 +18,9 @@ import java.util.HashMap;
 public class CardsController {
     private final CardService cardService;
 
-    @GetMapping
+    @GetMapping("/newRound")
     public HashMap<Long, Card> getCards() {
+        log.debug("Got a request for new round");
         return cardService.getCards(7);
     }
 }
