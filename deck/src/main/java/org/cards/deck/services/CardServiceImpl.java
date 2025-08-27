@@ -1,15 +1,15 @@
-package org.cards.mono.services;
+package org.cards.deck.services;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.cards.mono.model.Card;
+import org.cards.deck.model.Card;
 import org.springframework.stereotype.Service;
 import org.springframework.core.io.ClassPathResource;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -44,6 +44,8 @@ public class CardServiceImpl implements CardService {
     public HashMap<Long, Card> getCards(int number) {
         List<Card> shuffled = new ArrayList<>(deck.values());
         Collections.shuffle(shuffled);
+
+        System.out.println("Deck Service: Shuffled cards!" + LocalDate.now().toString());
 
         HashMap<Long, Card> result = new HashMap<>(number);
 

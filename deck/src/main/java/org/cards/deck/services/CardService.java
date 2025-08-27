@@ -1,7 +1,7 @@
-package org.cards.mono.services;
+package org.cards.deck.services;
 
 
-import org.cards.mono.model.Card;
+import org.cards.deck.model.Card;
 
 import java.util.HashMap;
 
