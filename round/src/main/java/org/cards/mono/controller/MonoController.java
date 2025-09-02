@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.cards.mono.dtos.PlayerRoundDTO;
 import org.cards.mono.model.Card;
 import org.cards.mono.model.Round;
+import org.cards.mono.services.MonoServices;
 import org.cards.mono.services.MonoServicesImpl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +18,7 @@ import java.util.HashMap;
 @RequiredArgsConstructor
 @RequestMapping("/api/mono")
 public class MonoController {
-    private final MonoServicesImpl monoService;
+    private final MonoServices monoService;
 
     @GetMapping
     public Round getNewRound() {
@@ -51,6 +52,24 @@ public class MonoController {
         System.out.println("bidCard: " + bidCard.getId());
         System.out.println("roundId: " + roundId);
 
-        return ResponseEntity.ok("Move received");
+        // Get full round by ID
+        Round readyRound = new Round();
+        readyRound.setId(roundId);
+        // Add player card play to that
+
+        readyRound.setPlayerCard(playedCard);
+        readyRound.setPlayerBid(bidCard);
+
+        // Add automa card play
+        Round automaPlay = monoService.playRound(readyRound);
+        readyRound.setAutomaCard(automaPlay.getAutomaCard());
+        readyRound.setAutomaBid(automaPlay.getAutomaBid());
+
+        // Resolve outcome.
+
+        return ResponseEntity.ok("P: "
+                + readyRound.getPlayerCard().getFilename()
+                + " - vs - A:"
+                + readyRound.getAutomaCard().getFilename());
     }
 }

@@ -2,6 +2,7 @@ package org.cards.mono.clients;
 
 
 import org.cards.mono.model.Card;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
@@ -18,9 +19,11 @@ public class DeckClient {
     private final RestTemplate restTemplate;
 
     public DeckClient(
-            RestTemplateBuilder builder) {
+            RestTemplateBuilder builder,
+            @Value("${deck.client.host}") final String url) {
         //TODO: this is unpleasant. remove hardcode
-        this.url = "http://localhost:8001/api/deck";
+        //this.url = "http://localhost:8001/api/deck";
+        this.url = url;
         this.restTemplate = builder.build();
     }
 

@@ -2,6 +2,7 @@ package org.cards.mono.services;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.cards.mono.clients.AutomaClient;
 import org.cards.mono.clients.DeckClient;
 import org.cards.mono.model.Card;
 import org.cards.mono.model.Round;
@@ -16,6 +17,7 @@ public class MonoServicesImpl implements MonoServices {
 
     //private final CardServiceImpl cardService;
     private final DeckClient deckClient;
+    private final AutomaClient automaClient;
     //TODO: Connect to card service
 
     @Override
@@ -39,6 +41,8 @@ public class MonoServicesImpl implements MonoServices {
         //TODO: better id handling, obviously
         round.setId(Long.valueOf(42));
 
+
+
         return round ;
 
     }
@@ -50,6 +54,9 @@ public class MonoServicesImpl implements MonoServices {
 
     @Override
     public Round playRound(Round round) {
-        return null;
+
+        Round fullRound = automaClient.automaPlay(round);
+
+        return fullRound;
     }
 }
