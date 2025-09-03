@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.cards.mono.clients.AutomaClient;
 import org.cards.mono.clients.DeckClient;
+import org.cards.mono.eventdriven.ResolverEventPublisher;
 import org.cards.mono.model.Card;
 import org.cards.mono.model.Round;
 import org.springframework.stereotype.Service;
@@ -18,7 +19,8 @@ public class MonoServicesImpl implements MonoServices {
     //private final CardServiceImpl cardService;
     private final DeckClient deckClient;
     private final AutomaClient automaClient;
-    //TODO: Connect to card service
+
+    private final ResolverEventPublisher resolverEventPublisher;
 
     @Override
     public Round getNewRound() {
@@ -56,6 +58,10 @@ public class MonoServicesImpl implements MonoServices {
     public Round playRound(Round round) {
 
         Round fullRound = automaClient.automaPlay(round);
+
+        //send message to Resolver
+        resolverEventPublisher.publishResolverEvent(fullRound);
+        log.info("Round played: {}", fullRound.getId());
 
         return fullRound;
     }
