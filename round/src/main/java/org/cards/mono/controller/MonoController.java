@@ -41,35 +41,23 @@ public class MonoController {
 
     @PostMapping("/submitMove")
     public ResponseEntity<String> submitMove(
-            @RequestBody PlayerRoundDTO round){
+            @RequestBody Round round){
         // post round play (card and bit)
 
-        Card playedCard = round.getPlayedCard();
-        Card bidCard = round.getBidCard();
-        Long roundId = round.getRoundId();
-
-        System.out.println("playedCard: " + playedCard.getId());
-        System.out.println("bidCard: " + bidCard.getId());
-        System.out.println("roundId: " + roundId);
-
-        // Get full round by ID
-        Round readyRound = new Round();
-        readyRound.setId(roundId);
-        // Add player card play to that
-
-        readyRound.setPlayerCard(playedCard);
-        readyRound.setPlayerBid(bidCard);
+        System.out.println("Round: " + round.toString());
 
         // Add automa card play
-        Round automaPlay = monoService.playRound(readyRound);
-        readyRound.setAutomaCard(automaPlay.getAutomaCard());
-        readyRound.setAutomaBid(automaPlay.getAutomaBid());
+        Round automaPlay = monoService.playRound(round);
+        round.setAutomaCard(automaPlay.getAutomaCard());
+        round.setAutomaBid(automaPlay.getAutomaBid());
 
         // Resolve outcome.
 
-        return ResponseEntity.ok("P: "
-                + readyRound.getPlayerCard().getFilename()
+        System.out.println("P: "
+                + round.getPlayerCard().getFilename()
                 + " - vs - A:"
-                + readyRound.getAutomaCard().getFilename());
+                + round.getAutomaCard().getFilename());
+
+        return ResponseEntity.ok("Submitted");
     }
 }

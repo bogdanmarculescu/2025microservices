@@ -5,6 +5,9 @@ Topics we've covered:
 3. [ ] Domain and Scaling
 4. [x] Synchronous communication - REST communication between two SpringBoot services
 5. [ ] Asynchronous communication between two SpringBoot services
+   1. [ ] Domain, and information flow
+   2. [ ] Slow or broken communication
+   3. [ ] Asynchronous communication overview
 6. [ ] Containerization - Docker
 7. [ ] Gateway - Access to the system
 8. [ ] Centralized configuration
@@ -13,3 +16,9 @@ Topics we've covered:
 11. [ ] Software Quality - Testing and Cucumber
 12. [ ] Spring Security
 13. [ ] Orchestration, Deployment
+
+
+Lecture Code
+odd.himolde.no/elf
+
+PEN9 : ZR64

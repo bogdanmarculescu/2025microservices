@@ -103,10 +103,15 @@ function Cards() {
             return;
         }
 
+        round.playerBid = bidCard;
+        round.playerCard = playedCard;
+
+        console.log(round);
+
         fetch("http://localhost:8000/api/mono/submitMove", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ roundId, playedCard, bidCard }),
+            body: JSON.stringify( round ),
         })
             .then((res) => {
                 if (res.ok) {
