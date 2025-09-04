@@ -1,7 +1,5 @@
 package org.cards.resolver.model;
 
-import org.cards.mono.model.Suite;
-
 public class Card {
     private Long id;
     private int value;
