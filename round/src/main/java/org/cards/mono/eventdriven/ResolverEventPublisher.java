@@ -29,12 +29,15 @@ public class ResolverEventPublisher {
             Round round
     ) {
         //build the message/even
-        String event = buildEventString(round);
+        //String event = buildEventString(round);
+
+        //String event = buildEventObject(round);
+        ResolverEvent event = buildEventObject(round);
 
         //decide on routing
         String routingKey= "round.solved";
         // send the message
-
+        log.info("Sending: " + round);
         amqpTemplate.convertAndSend(exchangeName, routingKey, event);
     }
 
@@ -46,5 +49,25 @@ public class ResolverEventPublisher {
                 .append("}");
 
         return sb.toString();
+    }
+
+    private ResolverEvent buildEventObject(Round round) {
+        ResolverEvent event = new ResolverEvent(
+                round.getId(),
+                round.getPlayerCards(),
+                round.getAutomaCards(),
+                round.getPlayerCard(),
+                round.getAutomaCard(),
+                round.getPlayerBid(),
+                round.getAutomaBid(),
+                round.getTopic()
+        );
+
+        String routingKey = "round.solved";
+
+        log.info("Sending: " + event);
+
+        amqpTemplate.convertAndSend(exchangeName, routingKey, event);
+        return event;
     }
 }

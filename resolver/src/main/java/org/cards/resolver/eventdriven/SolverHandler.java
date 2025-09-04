@@ -16,7 +16,6 @@ public class SolverHandler {
     void handleSolveEvent(
             String message
     ){
-        log.info("Solve event received: {}", message);
-        System.out.println("Solve event received: " + message);
+        log.info("Solve event received: " + message);
     }
 }
