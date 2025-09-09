@@ -37,12 +37,6 @@ public class ResolveEventPublisher {
 
     public void publishRoundEventObject(Round round){
         String routingKey = "rounds.complete";
-
-        StringBuffer result = new StringBuffer();
-        result.append("{")
-                .append("\"roundId\":\"" + round.getId())
-                .append("}");
-
         log.info("Sending message to Rabbit:" + round);
         amqpTemplate.convertAndSend(exchangeName, routingKey, round);
     }
