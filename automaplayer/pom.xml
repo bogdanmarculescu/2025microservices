@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>org.cards</groupId>
-    <artifactId>automaPlayer</artifactId>
+    <artifactId>automaplayer</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>automaPlayer</name>
     <description>automaPlayer</description>
