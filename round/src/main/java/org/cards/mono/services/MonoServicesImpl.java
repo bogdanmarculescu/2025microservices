@@ -7,6 +7,7 @@ import org.cards.mono.clients.DeckClient;
 import org.cards.mono.eventdriven.ResolveEventPublisher;
 import org.cards.mono.model.Card;
 import org.cards.mono.model.Round;
+import org.cards.mono.model.RoundRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -21,6 +22,7 @@ public class MonoServicesImpl implements MonoServices {
     private final AutomaClient automaClient;
 
     private final ResolveEventPublisher resolveEventPublisher;
+    private final RoundRepository roundRepository;
 
     @Override
     public Round getNewRound() {
@@ -41,17 +43,20 @@ public class MonoServicesImpl implements MonoServices {
         round.setTopic(cards.get(Long.valueOf(7)));
 
         //TODO: better id handling, obviously
-        round.setId(Long.valueOf(42));
+        //round.setId(Long.valueOf(42));
 
+        Round readyRound = roundRepository.save(round);
 
-
-        return round ;
+        return readyRound ;
 
     }
 
     @Override
     public Round getRound(int id) {
-        return null;
+        Long roundId = Long.valueOf(id);
+        Round round = roundRepository.getRoundById(roundId);
+
+        return round;
     }
 
     @Override
@@ -61,6 +66,7 @@ public class MonoServicesImpl implements MonoServices {
 
         //resolveEventPublisher.publishRoundEventString("Hei Rabbit");
         // I  want to send the Round object
+        log.info("Playing round {}", fullRound.getId());
         resolveEventPublisher.publishRoundEventObject(round);
         return fullRound;
     }

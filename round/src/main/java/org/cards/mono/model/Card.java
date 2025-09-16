@@ -1,6 +1,16 @@
 package org.cards.mono.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class Card {
+    @Id
+    @GeneratedValue
+    private Long card_db_id;
+
     private Long id;
     private int value;
     private Suite suite;

@@ -41,6 +41,19 @@ Example: ```docker network create micro2025```
 Run rabbit in network:
 ``` docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 --network micro2025 rabbitmq:4-management ```
 
+Postgres in docker
+
+```
+docker run -it --rm --name postgres \
+  -e POSTGRES_USER=serviceuser \
+  -e POSTGRES_PASSWORD=servicepwd \
+  -e POSTGRES_DB=rounds \
+  -p 5432:5432 \
+  -v postgres_data:/var/lib/postgresql/data \
+  --network micro2025 \
+  -d postgres:15
+```
+
 #### Building Docker images:
 
 ##### Option 1:

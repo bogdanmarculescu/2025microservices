@@ -60,6 +60,7 @@ public class ResolverServiceImplAdvanced implements ResolverService {
         catch (InterruptedException e) {
             e.printStackTrace();
         }
+        log.info("Round {} -> Outcome {}; points {}", round.getId(), outcome, points);
         return outcome + "; Points: " + points;
     }
 }
