@@ -53,6 +53,13 @@ public class ResolverServiceImplAdvanced implements ResolverService {
         }
         else points = - p.getValue() - aBid.getValue();
 
+
+        try {
+            Thread.sleep(5000);
+        }
+        catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return outcome + "; Points: " + points;
     }
 }

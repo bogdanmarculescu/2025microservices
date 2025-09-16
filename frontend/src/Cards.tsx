@@ -9,7 +9,6 @@ function Cards() {
 
     const [round, setRound] = useState(null);
     const [topic, setTopic] = useState(null);
-    const [roundId, setRoundId] = useState(null);
     const [playerHand, setPlayerHand] = useState([]);
 
     const [playedCard, setPlayedCard] = useState(null);
@@ -25,7 +24,6 @@ function Cards() {
                 const result = await response.json();
                 setRound(result);
                 setTopic(result.topic);
-                setRoundId(result.id);
                 setPlayerHand(Object.values(result.playerCards));
             } catch (err){
                 // @ts-ignore

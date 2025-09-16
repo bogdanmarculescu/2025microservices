@@ -4,14 +4,20 @@
 
 #### Active:
 - [ ] Docker
-- [ ] Startup procedure
-- [ ] mvn spring-boot:build-image - debug
-- [x] manual building of containers
-- [x] connect rabbitmq to my resolver
-- [ ] docker compose
-- [ ] docker build for the frontend
+  - [ ] Startup procedure
+  - [x] manual building of containers
 
+- [ ] Docker build for the frontend
+- [x] Docker with Async communication
+  - [x] connect rabbitmq to my resolver
+  - [x] connect rabbitmq to round 
+- [x] Docker with Sync communication
+  - [x] Handling host
+  - [x] handling ports
+- [ ] mvn spring-boot:build-image - debug ?
+- 
 #### TODO for later:
+- [ ] docker compose
 
 
 

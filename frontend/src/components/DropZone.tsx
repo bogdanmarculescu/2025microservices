@@ -2,7 +2,7 @@ import { getCardImage } from "../utils/getCardImage";
 
 // @ts-ignore
 export default function DropZone({ label, card, onDrop }) {
-    const allowDrop = (e) => e.preventDefault();
+    const allowDrop = (e: { preventDefault: () => any; }) => e.preventDefault();
 
     return (
         <div
