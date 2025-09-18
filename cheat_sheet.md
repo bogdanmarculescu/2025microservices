@@ -3,7 +3,7 @@ commands and other relevant issues
 
 ### Frontend
 
-Install depenencies: ``` npm install ``` 
+Install dependencies: ``` npm install ``` 
 
 Run frontend in dev mode: ``` npm run dev```
 
@@ -36,9 +36,13 @@ Run RabbitMQ in docker:
 ```docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:4-management```
 
 Network
+
 ```docker network create [network_name] ```
+
 Example: ```docker network create micro2025```
+
 Run rabbit in network:
+
 ``` docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 --network micro2025 rabbitmq:4-management ```
 
 Postgres in docker
@@ -67,7 +71,9 @@ docker run -it --rm --name postgres \
 
 #### Running Docker images
 
-Example: ``` docker run --name manual_round --network micro2025 -p 8000:8000 manual_round ```
+Example: 
+
+``` docker run --name manual_round --network micro2025 -p 8000:8000 manual_round ```
 
 ``` docker run --name frontend --network micro2025 -p 5173:5173 frontend:0.1 ```
 
@@ -81,3 +87,13 @@ Example: ``` docker run --name manual_round --network micro2025 -p 8000:8000 man
 
 ``` mvn spring-boot:build-image ```
 ``` docker run --name round --network micro2025 -p 8000:8000 round:0.0.1-SNAPSHOT ```
+
+
+Codes for today:
+
+2190
+7257
+
+
+
+

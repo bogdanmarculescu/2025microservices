@@ -81,6 +81,7 @@
                             <artifactId>lombok</artifactId>
                         </exclude>
                     </excludes>
+                    <imageBuilder>paketobuildpacks/builder-noble-java-tiny</imageBuilder>
                 </configuration>
             </plugin>
         </plugins>
