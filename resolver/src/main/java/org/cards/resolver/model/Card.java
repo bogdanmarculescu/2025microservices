@@ -1,6 +1,12 @@
 package org.cards.resolver.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
 public class Card {
+
+    @Id
     private Long id;
     private int value;
     private Suite suite;

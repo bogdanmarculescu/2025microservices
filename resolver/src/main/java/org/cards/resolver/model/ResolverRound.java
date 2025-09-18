@@ -1,19 +1,38 @@
 package org.cards.resolver.model;
 
+import jakarta.persistence.*;
+
 import java.util.HashMap;
 
+@Entity
 public class ResolverRound {
 
+    @Id
     private Long id;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @CollectionTable(name = "player_cards", joinColumns = @JoinColumn(name = "round_id"))
+    @MapKeyColumn(name = "player_position")
+    @Column(name = "card_value")
     private HashMap<Long, Card> playerCards;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @CollectionTable(name = "automa_cards", joinColumns = @JoinColumn(name = "round_id"))
+    @MapKeyColumn(name = "automa_position")
+    @Column(name = "card_value")
     private HashMap<Long, Card> automaCards;
 
+    @OneToOne
     private Card playerCard;
+    @OneToOne
     private Card automaCard;
 
+    @OneToOne
     private Card playerBid;
+    @OneToOne
     private Card automaBid;
 
+    @OneToOne
     private Card topic;
 
     public Long getId() {

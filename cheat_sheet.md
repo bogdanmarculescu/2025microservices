@@ -45,14 +45,27 @@ Run rabbit in network:
 
 ``` docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 --network micro2025 rabbitmq:4-management ```
 
+
 Postgres in docker
+
 
 ```
 docker run -it --rm --name postgres \
   -e POSTGRES_USER=serviceuser \
   -e POSTGRES_PASSWORD=servicepwd \
-  -e POSTGRES_DB=rounds \
+  -e POSTGRES_DB=resolver \
   -p 5432:5432 \
+  -v postgres_data:/var/lib/postgresql/data \
+  --network micro2025 \
+  -d postgres:15
+```
+
+```
+docker run -it --rm --name postgres-resolver \
+  -e POSTGRES_USER=serviceuser \
+  -e POSTGRES_PASSWORD=servicepwd \
+  -e POSTGRES_DB=resolver \
+  -p 5433:5432 \
   -v postgres_data:/var/lib/postgresql/data \
   --network micro2025 \
   -d postgres:15
@@ -74,6 +87,9 @@ docker run -it --rm --name postgres \
 Example: 
 
 ``` docker run --name manual_round --network micro2025 -p 8000:8000 manual_round ```
+
+
+``` docker run --name resolver --network micro2025 -p 8005:8005 resolver:0.0.1-SNAPSHOT ```
 
 ``` docker run --name frontend --network micro2025 -p 5173:5173 frontend:0.1 ```
 

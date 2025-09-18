@@ -1,13 +1,18 @@
 package org.cards.resolver.services;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.cards.resolver.model.Card;
 import org.cards.resolver.model.ResolverRound;
+import org.cards.resolver.model.ResolverRoundRepository;
 import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class ResolverServiceImplAdvanced implements ResolverService {
+
+    private final ResolverRoundRepository roundRepository;
 
     @Override
     public String resolveRound(ResolverRound round) {
@@ -60,7 +65,13 @@ public class ResolverServiceImplAdvanced implements ResolverService {
         catch (InterruptedException e) {
             e.printStackTrace();
         }
+
+        roundRepository.save(round);
+
         log.info("Round {} -> Outcome {}; points {}", round.getId(), outcome, points);
         return outcome + "; Points: " + points;
+
     }
+
+
 }
