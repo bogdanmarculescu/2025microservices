@@ -175,8 +175,6 @@ docker run -it --rm --name postgresrounds \
 
 
 
-Codes for today:
-
 
 
 
