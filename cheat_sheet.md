@@ -43,30 +43,36 @@ Example: ```docker network create micro2025```
 
 Run rabbit in network:
 
-``` docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 --network micro2025 rabbitmq:4-management ```
+``` 
+docker run -it --rm --name rabbitmq \
+-p 5672:5672 \
+-p 15672:15672 \
+--network micro2025 \
+-d rabbitmq:4-management 
+```
 
 
 Postgres in docker
 
 
 ```
-docker run -it --rm --name postgres \
+docker run -it --rm --name postgresresolver \
   -e POSTGRES_USER=serviceuser \
   -e POSTGRES_PASSWORD=servicepwd \
   -e POSTGRES_DB=resolver \
   -p 5432:5432 \
-  -v postgres_data:/var/lib/postgresql/data \
+  -v resolver:/var/lib/postgresql/data \
   --network micro2025 \
   -d postgres:15
 ```
 
 ```
-docker run -it --rm --name postgres-resolver \
+docker run -it --rm --name postgresrounds \
   -e POSTGRES_USER=serviceuser \
   -e POSTGRES_PASSWORD=servicepwd \
-  -e POSTGRES_DB=resolver \
+  -e POSTGRES_DB=rounds \
   -p 5433:5432 \
-  -v postgres_data:/var/lib/postgresql/data \
+  -v rounds:/var/lib/postgresql/data \
   --network micro2025 \
   -d postgres:15
 ```
@@ -91,6 +97,36 @@ Example:
 
 ``` docker run --name resolver --network micro2025 -p 8005:8005 resolver:0.0.1-SNAPSHOT ```
 
+``` 
+docker run -it --rm --name deck \
+    --network micro2025 \
+    -p 8001:8001 \
+    -d deck:0.0.1-SNAPSHOT 
+    
+```
+
+``` 
+docker run -it --rm --name automaplayer \
+    --network micro2025 \
+    -p 8003:8003 \
+    -d automaplayer:0.0.1-SNAPSHOT 
+    
+```
+
+```
+docker run -it --rm --name resolver \
+    --network micro2025 \
+    -p 8005:8005 \
+    -d resolver:0.0.1-SNAPSHOT 
+```
+
+```
+docker run -it --rm --name round \
+    --network micro2025 \
+    -p 8000:8000 \
+    -d round:0.0.1-SNAPSHOT 
+```
+
 ``` docker run --name frontend --network micro2025 -p 5173:5173 frontend:0.1 ```
 
 ##### Startup Procedure 2025-09-16
@@ -104,11 +140,43 @@ Example:
 ``` mvn spring-boot:build-image ```
 ``` docker run --name round --network micro2025 -p 8000:8000 round:0.0.1-SNAPSHOT ```
 
+##### Startup Procedure 2025-09-18
+
+``` docker network create micro2025 ```
+``` docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 --network micro2025 rabbitmq:4-management ```
+
+```
+docker run -it --rm --name postgresresolver \
+  -e POSTGRES_USER=serviceuser \
+  -e POSTGRES_PASSWORD=servicepwd \
+  -e POSTGRES_DB=resolver \
+  -p 5432:5432 \
+  -v resolver:/var/lib/postgresql/data \
+  --network micro2025 \
+  -d postgres:15
+```
+
+```
+docker run -it --rm --name postgresrounds \
+  -e POSTGRES_USER=serviceuser \
+  -e POSTGRES_PASSWORD=servicepwd \
+  -e POSTGRES_DB=rounds \
+  -p 5433:5432 \
+  -v rounds:/var/lib/postgresql/data \
+  --network micro2025 \
+  -d postgres:15
+```
+
+``` docker build -t frontend:0.1 . ```
+``` docker run --name frontend --network micro2025 -p 5173:5173 frontend:0.1 ```
+
+``` mvn spring-boot:build-image ```
+``` docker run --name round --network micro2025 -p 8000:8000 round:0.0.1-SNAPSHOT ```
+
+
 
 Codes for today:
 
-2190
-7257
 
 
 
