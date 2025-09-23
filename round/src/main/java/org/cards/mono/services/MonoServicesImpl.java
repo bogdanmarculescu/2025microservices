@@ -6,11 +6,13 @@ import org.cards.mono.clients.AutomaClient;
 import org.cards.mono.clients.DeckClient;
 import org.cards.mono.eventdriven.ResolveEventPublisher;
 import org.cards.mono.model.Card;
+import org.cards.mono.model.CardRepository;
 import org.cards.mono.model.Round;
 import org.cards.mono.model.RoundRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.Map;
 
 @Slf4j
 @Service
@@ -23,6 +25,7 @@ public class MonoServicesImpl implements MonoServices {
 
     private final ResolveEventPublisher resolveEventPublisher;
     private final RoundRepository roundRepository;
+    private final CardRepository cardRepository;
 
     @Override
     public Round getNewRound() {
@@ -44,6 +47,17 @@ public class MonoServicesImpl implements MonoServices {
 
         //TODO: better id handling, obviously
         //round.setId(Long.valueOf(42));
+
+        round.setPlayerCards(resolveCards(round.getPlayerCards()));
+        round.setAutomaCards(resolveCards(round.getAutomaCards()));
+
+        round.setTopic(resolveCard(round.getTopic()));
+
+        round.setPlayerBid(resolveCard(round.getPlayerBid()));
+        round.setPlayerCard(resolveCard(round.getPlayerCard()));
+
+        round.setAutomaBid(resolveCard(round.getAutomaBid()));
+        round.setAutomaCard(resolveCard(round.getAutomaCard()));
 
         Round readyRound = roundRepository.save(round);
 
@@ -69,5 +83,21 @@ public class MonoServicesImpl implements MonoServices {
         log.info("Playing round {}", fullRound.getId());
         resolveEventPublisher.publishRoundEventObject(round);
         return fullRound;
+    }
+
+    private Card resolveCard(Card card){
+        if(card == null) return null;
+        return cardRepository
+                .findById(card.getId())
+                .orElseGet(() -> cardRepository.save(card));
+    }
+
+    private Map<Long, Card> resolveCards(Map<Long, Card> cards){
+        Map<Long, Card> result = new HashMap<>();
+        for(Map.Entry<Long, Card> incomingEntry : cards.entrySet()){
+            Card card = resolveCard(incomingEntry.getValue());
+            result.put(incomingEntry.getKey(), card);
+        }
+        return result;
     }
 }

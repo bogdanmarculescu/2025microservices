@@ -2,11 +2,10 @@ package org.cards.resolver.eventdriven;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.cards.resolver.model.ResolverRound;
-import org.cards.resolver.services.ResolverServiceImpl;
+import org.cards.resolver.model.Round;
 import org.cards.resolver.services.ResolverServiceImplAdvanced;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Service;
 
 @Slf4j
@@ -15,9 +14,12 @@ import org.springframework.stereotype.Service;
 public class ResolverHandler {
     private final ResolverServiceImplAdvanced resolverService;
 
-    @RabbitListener(queues =  "rounds.complete")
+    @RabbitListener(
+            queues =  "${amqp.queue.name}",
+            containerFactory = "rabbitListenerContainerFactory"
+    )
     public void handleEvent(
-            ResolverRound round
+            @Payload Round round
     ){
         log.info("Received message: {}", round);
         String outcome  = resolverService.resolveRound(round);

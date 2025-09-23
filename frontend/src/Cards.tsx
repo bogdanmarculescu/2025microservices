@@ -196,6 +196,11 @@ function Cards() {
                         onDrop={(e) => handleDrop(e, "bid")}
                     />
                 </div>
+
+                {/* Outcomes */}
+                <div>
+                    <h1> Outcome </h1>
+                </div>
             </div>
         );
 }

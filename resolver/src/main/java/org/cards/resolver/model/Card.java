@@ -1,13 +1,21 @@
 package org.cards.resolver.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.*;
 
 @Entity
 public class Card {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonIgnore
     private Long id;
+
+    @Column(unique = true, nullable = false)
+    @JsonProperty("id")
+    private Long externalId;
+
     private int value;
     private Suite suite;
     private String filename;
@@ -22,10 +30,12 @@ public class Card {
     public Card(){
     }
 
+    @JsonIgnore
     public Long getId() {
         return id;
     }
 
+    @JsonIgnore
     public void setId(Long id) {
         this.id = id;
     }
@@ -52,5 +62,15 @@ public class Card {
 
     public void setFilename(String filename) {
         this.filename = filename;
+    }
+
+    @JsonProperty("id")
+    public Long getExternalId() {
+        return externalId;
+    }
+
+    @JsonProperty("id")
+    public void setExternalId(Long externalId) {
+        this.externalId = externalId;
     }
 }

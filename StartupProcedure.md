@@ -48,7 +48,7 @@ docker run -it --rm --name postgresrounds \
 
 4. Frontend - built from Docker file. 
 - a. Build:  ``` docker build -t frontend:0.1 . ```
-- b. Run: ``` docker run --name frontend --network micro2025 -p 5173:5173 frontend:0.1 ```
+- b. Run: ``` docker run -d --rm --name frontend --network micro2025 -p 5173:5173 frontend:0.1 ```
 
 5. Build and run the other services:
 Build: 
@@ -61,19 +61,32 @@ OR
 ``` docker build -t [image_name] . ```
 
 - c. Run: 
-- ``` docker run --name [service_name] --network [network_name] -p 8000:8000 [image_name] ```
+- ``` docker run [-d] [--rm] --name [service_name] --network [network_name] -p 8000:8000 [image_name] ```
 
-    - a. Round - Central service
-- ``` docker run --name round --network micro2025 -p 8000:8000 round:0.0.1-SNAPSHOT ```
+- where 
+  - ```[-d]``` => run in detached mode (i.e. not tied to the terminal)
+  - ```[--rm]``` => remove when done
+
+      - a. Round - Central service
+- ```
+    docker run -d --rm --name round --network micro2025 -p 8000:8000 round:0.0.1-SNAPSHOT 
+  ```
 
     - b. Deck - handles cards and shuffling
-- ``` docker run --name deck --network micro2025 -p 8001:8001 deck:0.0.1-SNAPSHOT ```
+- ``` 
+    docker run -d --rm --name deck --network micro2025 -p 8001:8001 deck:0.0.1-SNAPSHOT 
+  ```
 
     - c. AutomaPlayer - handles the card play by an automated player
-- ``` docker run --name automaplayer --network micro2025 -p 8003:8003 automaplayer:0.0.1-SNAPSHOT ```
+- ``` 
+  docker run -d --rm --name automaplayer --network micro2025 -p 8003:8003 automaplayer:0.0.1-SNAPSHOT 
+  ```
 
     - d. Resolver - resolves the round and stores results
-- ``` docker run --name resolver --network micro2025 -p 8005:8005 resolver:0.0.1-SNAPSHOT ```
+- ``` 
+  docker run -d --rm --name resolver --network micro2025 -p 8005:8005 resolver:0.0.1-SNAPSHOT 
+  ```
+
 
 
 #### Additional useful docker commands

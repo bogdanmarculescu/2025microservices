@@ -1,13 +1,13 @@
 package org.cards.resolver.services;
 
 import org.cards.resolver.model.Card;
-import org.cards.resolver.model.ResolverRound;
+import org.cards.resolver.model.Round;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ResolverServiceImpl implements ResolverService {
     @Override
-    public String resolveRound(ResolverRound round) {
+    public String resolveRound(Round round) {
         //TODO: some clever way to decide
 
         Card p = round.getPlayerCard();
@@ -23,5 +23,10 @@ public class ResolverServiceImpl implements ResolverService {
         }
 
         return outcome;
+    }
+
+    @Override
+    public Round getRoundById(Long id) {
+        return null;
     }
 }

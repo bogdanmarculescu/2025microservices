@@ -1,4 +1,4 @@
-package org.cards.mono.model;
+package org.cards.resolver.model;
 
 import jakarta.persistence.*;
 
@@ -9,7 +9,6 @@ import java.util.Map;
 public class Round {
 
     @Id
-    @GeneratedValue
     private Long id;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -28,27 +27,29 @@ public class Round {
             inverseJoinColumns = @JoinColumn(name = "card_id")
     )
     @MapKeyColumn(name = "position")
-    private Map<Long, Card> automaCards =  new HashMap<>();
+    private Map<Long, Card> automaCards = new HashMap<>();
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "player_card")
     private Card playerCard;
-
-    @OneToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "automa_card")
     private Card automaCard;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "player_bid_card")
     private Card playerBid;
-
-    @OneToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "automa_bid_card")
     private Card automaBid;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "topic_card")
     private Card topic;
+
+    private String winner;
+
+    private int points;
 
     public Long getId() {
         return id;
@@ -112,5 +113,21 @@ public class Round {
 
     public void setTopic(Card topic) {
         this.topic = topic;
+    }
+
+    public String getWinner() {
+        return winner;
+    }
+
+    public void setWinner(String winner) {
+        this.winner = winner;
+    }
+
+    public int getPoints() {
+        return points;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
     }
 }
