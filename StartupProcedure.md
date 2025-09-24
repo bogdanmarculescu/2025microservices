@@ -120,6 +120,12 @@ What is does:
 
 
 
-Code 1: 7245
+Adding consul:
+```
+docker run -d --rm --name=consul \
+-p 8500:8500 \
+-p 8600:8600/udp \
+hashicorp/consul agent -dev -client 0.0.0.0
+```
 
-Code 2: 0956
+Locally: ``` consul agent -dev -node cards ```

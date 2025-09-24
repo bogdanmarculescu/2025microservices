@@ -3,13 +3,18 @@
 ### Various notes and tasks
 
 #### Active:
-- [ ] Access control
+
 - [ ] Gateway
 - [ ] Know if my service is running
-  - [ ] Health check
+  - [ ] Health check - is an individual service running?
+  - [ ] Discovery - which services are running - overview
   - [ ] Load balancing
+
+
 - [ ] Better handling of startup
   - [ ] Automated startup
+
+- [ ] Access control
 - [ ] Smarter handling of logs
 - [ ] Docker
   - [ ] Startup procedure
