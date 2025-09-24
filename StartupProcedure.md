@@ -61,7 +61,12 @@ OR
 ``` docker build -t [image_name] . ```
 
 - c. Run: 
-- ``` docker run [-d] [--rm] --name [service_name] --network [network_name] -p 8000:8000 [image_name] ```
+- ``` 
+  docker run [-d] [--rm] --name [service_name] 
+  --network [network_name] 
+  -p 8000:8000 
+  [image_name] 
+  ```
 
 - where 
   - ```[-d]``` => run in detached mode (i.e. not tied to the terminal)
@@ -87,6 +92,13 @@ OR
   docker run -d --rm --name resolver --network micro2025 -p 8005:8005 resolver:0.0.1-SNAPSHOT 
   ```
 
+    - e. Run resolver again
+- ```
+  docker run -d --rm --name resolver2 \
+  --network micro2025 \
+  -p 8006:8005 \
+  resolver:0.0.1-SNAPSHOT  
+  ```
 
 
 #### Additional useful docker commands
@@ -102,3 +114,12 @@ What is does:
 - Warning: This makes the next startup slower.
 
 3. ```docker volume prune -a``` => removes all volumes not in use (database storage, for example)
+
+4.  ``` docker ps ``` => check running containers
+5.  ``` docker images ```  => check available images 
+
+
+
+Code 1: 7245
+
+Code 2: 0956

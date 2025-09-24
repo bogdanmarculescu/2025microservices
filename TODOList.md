@@ -3,17 +3,17 @@
 ### Various notes and tasks
 
 #### Active:
+- [ ] Access control
+- [ ] Gateway
+- [ ] Know if my service is running
+  - [ ] Health check
+  - [ ] Load balancing
+- [ ] Better handling of startup
+  - [ ] Automated startup
+- [ ] Smarter handling of logs
 - [ ] Docker
   - [ ] Startup procedure
   - [x] manual building of containers
-
-- [ ] Docker build for the frontend
-- [x] Docker with Async communication
-  - [x] connect rabbitmq to my resolver
-  - [x] connect rabbitmq to round 
-- [x] Docker with Sync communication
-  - [x] Handling host
-  - [x] handling ports
 - [ ] mvn spring-boot:build-image - debug ?
 - 
 #### TODO for later:
@@ -33,3 +33,12 @@
     - [x] What if Receiver is offline?
     - [x] Sending objects via RabbitMQ
 - [x] What this means for (software) architecture 
+
+#### Lecture 10
+- [x] Docker build for the frontend
+- [x] Docker with Async communication
+    - [x] connect rabbitmq to my resolver
+    - [x] connect rabbitmq to round
+- [x] Docker with Sync communication
+    - [x] Handling host
+    - [x] handling ports
