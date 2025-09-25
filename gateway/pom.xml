@@ -11,8 +11,8 @@
     <groupId>org.cards</groupId>
     <artifactId>gateway</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>Gateway</name>
-    <description>Gateway</description>
+    <name>gateway</name>
+    <description>gateway</description>
     <url/>
     <licenses>
         <license/>

@@ -10,6 +10,7 @@ import org.springframework.core.io.ClassPathResource;
 import java.io.IOException;
 import java.io.InputStream;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -45,7 +46,9 @@ public class CardServiceImpl implements CardService {
         List<Card> shuffled = new ArrayList<>(deck.values());
         Collections.shuffle(shuffled);
 
-        System.out.println("Deck Service: Shuffled cards!" + LocalDate.now().toString());
+        //System.out.println("Deck Service: Shuffled cards!" + LocalDate.now().toString());
+
+        log.info("Shuffled:  {}; ", LocalDateTime.now().toString());
 
         HashMap<Long, Card> result = new HashMap<>(number);
 

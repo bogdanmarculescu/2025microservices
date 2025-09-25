@@ -10,11 +10,16 @@ spring:
       enabled: true
       discovery:
         query-passing: true
+        hostname: consul
+        health-check-path: /actuator/health
+        prefer-ip-address: false
+        health-check-url: http://gateway:8100/actuator/health
       config:
         data-key: application.yml
         format: yaml
         default-context: defaults
         prefixes: config
+      host: consul
     gateway:
       server:
         webflux:
@@ -23,4 +28,11 @@ spring:
               uri: lb://deck/
               predicates:
                 - Path=/api/deck
-
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info
+  endpoint:
+    health:
+      show-details: always
