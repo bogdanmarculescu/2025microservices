@@ -7,7 +7,6 @@ import org.cards.mono.clients.DeckClient;
 import org.cards.mono.eventdriven.ResolveEventPublisher;
 import org.cards.mono.model.Card;
 import org.cards.mono.model.CardRepository;
-import org.cards.mono.model.Round;
 import org.cards.mono.model.RoundRepository;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +16,7 @@ import java.util.Map;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class MonoServicesImpl implements MonoServices {
+public class Round implements RoundServices {
 
     //private final CardServiceImpl cardService;
     private final DeckClient deckClient;
@@ -28,8 +27,8 @@ public class MonoServicesImpl implements MonoServices {
     private final CardRepository cardRepository;
 
     @Override
-    public Round getNewRound() {
-        Round round = new Round();
+    public org.cards.mono.model.Round getNewRound() {
+        org.cards.mono.model.Round round = new org.cards.mono.model.Round();
 
         HashMap<Long, Card> cards = deckClient.getCards(7);
 
@@ -59,24 +58,24 @@ public class MonoServicesImpl implements MonoServices {
         round.setAutomaBid(resolveCard(round.getAutomaBid()));
         round.setAutomaCard(resolveCard(round.getAutomaCard()));
 
-        Round readyRound = roundRepository.save(round);
+        org.cards.mono.model.Round readyRound = roundRepository.save(round);
 
         return readyRound ;
 
     }
 
     @Override
-    public Round getRound(int id) {
+    public org.cards.mono.model.Round getRound(int id) {
         Long roundId = Long.valueOf(id);
-        Round round = roundRepository.getRoundById(roundId);
+        org.cards.mono.model.Round round = roundRepository.getRoundById(roundId);
 
         return round;
     }
 
     @Override
-    public Round playRound(Round round) {
+    public org.cards.mono.model.Round playRound(org.cards.mono.model.Round round) {
 
-        Round fullRound = automaClient.automaPlay(round);
+        org.cards.mono.model.Round fullRound = automaClient.automaPlay(round);
 
         //resolveEventPublisher.publishRoundEventString("Hei Rabbit");
         // I  want to send the Round object

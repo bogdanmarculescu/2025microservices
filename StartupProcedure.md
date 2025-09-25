@@ -47,8 +47,10 @@ docker run -it --rm --name postgresrounds \
 ### Building our services
 
 4. Frontend - built from Docker file. 
-- a. Build:  ``` docker build -t frontend:0.1 . ```
-- b. Run: ``` docker run -d --rm --name frontend --network micro2025 -p 5173:5173 frontend:0.1 ```
+   - a. Build:  ``` docker build -t frontend:0.1 . ```
+     - b. Run: ``` 
+               docker run -d --rm --name frontend --network micro2025 -p 5173:5173 frontend:0.1 
+            ```
 
 5. Build and run the other services:
 Build: 
