@@ -100,6 +100,14 @@ OR
   resolver:0.0.1-SNAPSHOT  
   ```
 
+- Gateway:
+
+```
+  docker run -d --rm --name gateway \
+  --network micro2025 \
+  -p 8100:8100 \
+  gateway:0.0.1-SNAPSHOT  
+  ```
 
 #### Additional useful docker commands
 

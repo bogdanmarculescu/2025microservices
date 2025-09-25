@@ -1,0 +1,26 @@
+server:
+  port: 8100
+spring:
+  application:
+    name: gateway
+  config:
+    import: "optional:consul:"
+  cloud:
+    consul:
+      enabled: true
+      discovery:
+        query-passing: true
+      config:
+        data-key: application.yml
+        format: yaml
+        default-context: defaults
+        prefixes: config
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: deck
+              uri: lb://deck/
+              predicates:
+                - Path=/api/deck
+

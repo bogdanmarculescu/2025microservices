@@ -8,6 +8,7 @@
 - [ ] Know if my service is running
   - [ ] Health check - is an individual service running?
   - [ ] Discovery - which services are running - overview
+  - [ ] Routing
   - [ ] Load balancing
 
 
@@ -47,3 +48,8 @@
 - [x] Docker with Sync communication
     - [x] Handling host
     - [x] handling ports
+
+
+Code 1: 8073
+
+Code 2: 8392
