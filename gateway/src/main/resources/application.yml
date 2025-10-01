@@ -28,10 +28,25 @@ spring:
               uri: lb://deck/
               predicates:
                 - Path=/api/deck
+            - id: round
+              uri: lb://round/
+              predicates:
+                - Path=/api/round, /api/round/**
             - id: automaplayer
               uri: lb://automaplayer/
               predicates:
                 - Path=/api/automa/**
+          globalcors:
+            corsConfigurations:
+              '[/**]':
+                allowedOrigins: "http://localhost:5173"
+                allowedHeaders: "*"
+                allowedMethods:
+                - "GET"
+                - "POST"
+                - "PUT"
+                - "OPTIONS"
+                allowCredentials: true
 management:
   endpoints:
     web:

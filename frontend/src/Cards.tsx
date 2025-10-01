@@ -17,7 +17,7 @@ function Cards() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('http://localhost:8000/api/round');
+                const response = await fetch('http://localhost:8100/api/round');
                 if (!response.ok) {
                     throw new Error(`Failed to fetch: ${response.status}`);
                 }
@@ -106,7 +106,7 @@ function Cards() {
 
         console.log(round);
 
-        fetch("http://localhost:8000/api/round/submitMove", {
+        fetch("http://localhost:8100/api/round/submitMove", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify( round ),
