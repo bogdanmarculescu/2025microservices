@@ -28,6 +28,10 @@ spring:
               uri: lb://deck/
               predicates:
                 - Path=/api/deck
+            - id: automaplayer
+              uri: lb://automaplayer/
+              predicates:
+                - Path=/api/automa/**
 management:
   endpoints:
     web:

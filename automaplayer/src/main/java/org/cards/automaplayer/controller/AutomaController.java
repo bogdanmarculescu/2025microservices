@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDateTime;
+
 @Slf4j
 @RestController
 @RequiredArgsConstructor
@@ -23,7 +25,10 @@ public class AutomaController {
             @RequestBody RoundDTO roundDTO
     ){
         RoundDTO response = automaService.playAutoma(roundDTO);
-        System.out.println(response);
+
+        //System.out.println(response);
+
+        log.info("Processed Round: {} -> {}", roundDTO.getId(), LocalDateTime.now());
         return response;
     }
 }

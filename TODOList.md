@@ -6,10 +6,12 @@
 
 - [ ] Gateway
 - [ ] Know if my service is running
-  - [ ] Health check - is an individual service running?
-  - [ ] Discovery - which services are running - overview
-  - [ ] Routing
+  - [x] Health check - is an individual service running?
+  - [x] Discovery - which services are running - overview
+  - [ ] Running multiple instances of the same service
+  - [x] Routing
   - [ ] Load balancing
+  - [ ] Gateway for frontend
 
 
 - [ ] Better handling of startup
@@ -17,6 +19,8 @@
 
 - [ ] Access control
 - [ ] Smarter handling of logs
+  - [ ] Get access to logs
+  - [ ] Merge logs into one
 - [ ] Docker
   - [ ] Startup procedure
   - [x] manual building of containers
@@ -49,7 +53,3 @@
     - [x] Handling host
     - [x] handling ports
 
-
-Code 1: 8073
-
-Code 2: 8392
