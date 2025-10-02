@@ -70,12 +70,16 @@ services:
       - consul
       - gateway
       - rabbitmq
+      - postgresrounds
     networks:
       - micro2025
 
   deck:
     image: deck:0.0.1-SNAPSHOT
     container_name: deck
+    environment:
+      - SPRING_PROFILE_ACTIVE=docker
+      - SPRING_CLOUD_CONSUL_HOST=consul
     depends_on:
       - consul
     ports:

@@ -46,7 +46,7 @@ public class AmqpConfiguration {
         return BindingBuilder
                 .bind(queue)
                 .to(exchange)
-                .with("${amqp.routing.key.complete}");
+                .with("rounds.complete");
     }
 
     @Bean
