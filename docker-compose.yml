@@ -25,6 +25,20 @@ services:
     networks:
       - micro2025
 
+  postgresresolver:
+    image: postgres:15
+    container_name: postgresresolver
+    environment:
+      - "POSTGRES_USER=serviceuser"
+      - "POSTGRES_PASSWORD=servicepwd"
+      - "POSTGRES_DB=resolverdb"
+    ports:
+      - "5432:5432"
+    volumes:
+      - resolver_data:/var/lib/postgresql/data
+    networks:
+      - micro2025
+
   rabbitmq:
     image: rabbitmq:4-management
     container_name: rabbitmq
@@ -37,6 +51,9 @@ services:
   gateway:
     image: gateway:0.0.1-SNAPSHOT
     container_name: gateway
+    environment:
+      - SPRING_PROFILE_ACTIVE=docker
+      - SPRING_CLOUD_CONSUL_HOST=consul
     ports:
       - "8100:8100"
     depends_on:
@@ -66,6 +83,35 @@ services:
     networks:
       - micro2025
 
+  automaplayer:
+    image: automaplayer:0.0.1-SNAPSHOT
+    build: ./automaplayer
+    ports:
+      - "8003:8003"
+    depends_on:
+      - consul
+    networks:
+      - micro2025
+
+  resolver:
+    image: resolver:0.0.1-SNAPSHOT
+    build: ./resolver
+    depends_on:
+      - consul
+      - rabbitmq
+      - postgresresolver
+    ports:
+      - "8006:8006"
+    networks:
+      - micro2025
+
+  frontend:
+    image: frontend:0.1
+    ports:
+      - "5173:5173"
+    networks:
+      - micro2025
+
 
 networks:
   micro2025:
@@ -73,3 +119,4 @@ networks:
 
 volumes:
   rounds_data:
+  resolver_data:
