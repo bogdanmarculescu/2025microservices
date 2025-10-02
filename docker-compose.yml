@@ -1,0 +1,75 @@
+
+
+services:
+  consul:
+    image: hashicorp/consul
+    container_name: consul
+    ports:
+      - "8500:8500"
+      - "8600:8600"
+    command: "agent -dev -node=cards2025 -bootstrap -ui -client=0.0.0.0"
+    networks:
+      - micro2025
+
+  postgresrounds:
+    image: postgres:15
+    container_name: postgresrounds
+    environment:
+      - "POSTGRES_USER=serviceuser"
+      - "POSTGRES_PASSWORD=servicepwd"
+      - "POSTGRES_DB=rounds"
+    ports:
+      - "5433:5432"
+    volumes:
+      - rounds_data:/var/lib/postgresql/data
+    networks:
+      - micro2025
+
+  rabbitmq:
+    image: rabbitmq:4-management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - micro2025
+
+  gateway:
+    image: gateway:0.0.1-SNAPSHOT
+    container_name: gateway
+    ports:
+      - "8100:8100"
+    depends_on:
+      - consul
+    networks:
+      - micro2025
+
+  round:
+    image: round:0.0.1-SNAPSHOT
+    container_name: round
+    ports:
+      - "8000:8000"
+    depends_on:
+      - consul
+      - gateway
+      - rabbitmq
+    networks:
+      - micro2025
+
+  deck:
+    image: deck:0.0.1-SNAPSHOT
+    container_name: deck
+    depends_on:
+      - consul
+    ports:
+      - "8001:8001"
+    networks:
+      - micro2025
+
+
+networks:
+  micro2025:
+    driver: bridge
+
+volumes:
+  rounds_data:

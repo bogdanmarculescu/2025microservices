@@ -105,7 +105,7 @@ OR
 - Gateway:
 
 ```
-  docker run -d --rm --name gateway \
+  docker run --rm --name gateway \
   --network micro2025 \
   -p 8100:8100 \
   gateway:0.0.1-SNAPSHOT  
