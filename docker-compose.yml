@@ -50,6 +50,7 @@ services:
 
   gateway:
     image: gateway:0.0.1-SNAPSHOT
+    build: ./gateway
     container_name: gateway
     environment:
       - SPRING_PROFILE_ACTIVE=docker
@@ -63,9 +64,10 @@ services:
 
   round:
     image: round:0.0.1-SNAPSHOT
+    build: ./round
     container_name: round
-    ports:
-      - "8000:8000"
+    expose:
+      - "8000"
     depends_on:
       - consul
       - gateway
@@ -76,22 +78,23 @@ services:
 
   deck:
     image: deck:0.0.1-SNAPSHOT
+    build: ./deck
     container_name: deck
     environment:
       - SPRING_PROFILE_ACTIVE=docker
       - SPRING_CLOUD_CONSUL_HOST=consul
     depends_on:
       - consul
-    ports:
-      - "8001:8001"
+    expose:
+      - "8001"
     networks:
       - micro2025
 
   automaplayer:
     image: automaplayer:0.0.1-SNAPSHOT
     build: ./automaplayer
-    ports:
-      - "8003:8003"
+    expose:
+      - "8003"
     depends_on:
       - consul
     networks:
@@ -104,8 +107,8 @@ services:
       - consul
       - rabbitmq
       - postgresresolver
-    ports:
-      - "8006:8006"
+    expose:
+      - "8006"
     networks:
       - micro2025
 
