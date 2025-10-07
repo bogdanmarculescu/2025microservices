@@ -173,7 +173,11 @@ docker run -it --rm --name postgresrounds \
 ``` mvn spring-boot:build-image ```
 ``` docker run --name round --network micro2025 -p 8000:8000 round:0.0.1-SNAPSHOT ```
 
+#### Start a service, in test profile
 
+```
+     mvn clean verify -Dspring.profiles.active=test
+```
 
 
 

@@ -1,0 +1,23 @@
+server:
+  port: 8006
+
+spring:
+  application:
+    name: resolver
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+  cloud:
+    consul:
+      discovery:
+        register: true
+        prefer-ip-address: true
+        health-check-interval: 10s
+amqp.queue.name: resolver-queue
+amqp.exchange.name: resolver-exchange

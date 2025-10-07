@@ -107,6 +107,8 @@ services:
       - consul
       - rabbitmq
       - postgresresolver
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
     expose:
       - "8006"
     networks:
@@ -114,6 +116,7 @@ services:
 
   frontend:
     image: frontend:0.1
+    build: ./frontend
     ports:
       - "5173:5173"
     networks:

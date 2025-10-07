@@ -1,0 +1,30 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://postgresresolver:5432/resolverdb
+    username: serviceuser
+    password: servicepwd
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+  cloud:
+    consul:
+      host: consul
+      port: 8500
+      discovery:
+        register: true
+        service-name: resolver
+        health-check-path: /actuator/health
+        health-check-interval: 10s
+        prefer-ip-address: true
+
+  rabbitmq:
+    host: rabbitmq
+    port: 5672
+    username: guest
+    password: guest
+
+logging:
+  level:
+    org.springframework: INFO

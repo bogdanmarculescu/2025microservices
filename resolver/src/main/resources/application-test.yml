@@ -1,0 +1,40 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+
+  # Disable Consul
+  cloud:
+    consul:
+      enabled: false
+      config:
+        enabled: false
+      discovery:
+        enabled: false
+    service-registry:
+      auto-registration:
+        enabled: false
+    bus:
+      enabled: false
+
+  # Disable RabbitMQ
+  rabbitmq:
+    enabled: false
+    listener:
+      simple:
+        auto-startup: false
+      direct:
+        auto-startup: false
+
+logging:
+  level:
+    root: WARN
+    org.springframework.test: INFO
