@@ -20,4 +20,4 @@ spring:
         prefer-ip-address: true
         health-check-interval: 10s
 amqp.queue.name: resolver-queue
-amqp.exchange.name: resolver-exchange
+amqp.exchange.name: round.exchange

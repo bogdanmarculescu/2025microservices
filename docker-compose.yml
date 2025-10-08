@@ -73,6 +73,7 @@ services:
       - gateway
       - rabbitmq
       - postgresrounds
+      - deck
     networks:
       - micro2025
 

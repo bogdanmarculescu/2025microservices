@@ -4,14 +4,16 @@
 
 #### Active:
 
-- [ ] Gateway
+- [x] Gateway
 - [ ] Know if my service is running
   - [x] Health check - is an individual service running?
   - [x] Discovery - which services are running - overview
-  - [ ] Running multiple instances of the same service
+  - [x] Running multiple instances of the same service
   - [x] Routing
-  - [ ] Load balancing
-  - [ ] Gateway for frontend
+  - [x] Load balancing
+  - [x] Gateway for frontend
+  - [ ] I can no longer check the DB
+  - [ ] Consul  only sees 1 instance
 
 
 - [ ] Better handling of startup

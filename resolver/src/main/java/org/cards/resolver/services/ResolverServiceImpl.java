@@ -1,9 +1,11 @@
 package org.cards.resolver.services;
 
+import lombok.extern.slf4j.Slf4j;
 import org.cards.resolver.model.Card;
 import org.cards.resolver.model.Round;
 import org.springframework.stereotype.Service;
 
+@Slf4j
 @Service
 public class ResolverServiceImpl implements ResolverService {
     @Override
@@ -21,6 +23,7 @@ public class ResolverServiceImpl implements ResolverService {
                 outcome = "win";
             }
         }
+        log.debug(outcome);
 
         return outcome;
     }
