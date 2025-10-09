@@ -1,0 +1,13 @@
+spring:
+  cloud:
+    consul:
+      discovery:
+        # This overrides the default registration name in Consul
+        service-name: deck-from-consul
+
+        # This creates a unique instance-id per instance
+        instance-id: "${spring.application.name}-${server.port}-${random.int[1000,9999]}"
+
+        # Optional: include IP/hostname if you like
+        hostname: "${HOSTNAME:unknown-host}"
+        prefer-ip-address: true

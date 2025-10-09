@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: deck
+
+  config:
+    import: "optional:consul:"
+
+  cloud:
+    consul:
+      host: ${SPRING_CLOUD_CONSUL_HOST:localhost}
+      port: 8500
+      config:
+        enabled: true
+        format: yaml
+        prefix: config
+        default-context: application
+      discovery:
+        enabled: true
+        register: true
+        prefer-ip-address: true
+        service-name: deck
+        instance-id: "${spring.application.name}-${random.int[1000,9999]}"
+
+server:
+  port: 0
