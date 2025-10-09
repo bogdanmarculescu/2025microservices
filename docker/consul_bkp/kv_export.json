@@ -1,0 +1,17 @@
+[
+  {
+    "key": "config/",
+    "flags": 0,
+    "value": ""
+  },
+  {
+    "key": "config/resolver/",
+    "flags": 0,
+    "value": ""
+  },
+  {
+    "key": "config/resolver/application-docker.yml",
+    "flags": 0,
+    "value": "c3ByaW5nOgogY2xvdWQ6CiAgY29uc3VsOgogICBkaXNjb3Zlcnk6CiAgICBpc250YW5jZS1pZDogIiR7c3ByaW5nLmFwcGxpY2F0aW9uLm5hbWV9LSR7cmFuZG9tLmludFsxMDAwLDk5OTldIg=="
+  }
+]

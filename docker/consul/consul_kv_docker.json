@@ -1,0 +1,17 @@
+[
+  {
+    "key": "config/",
+    "flags": 0,
+    "value": ""
+  },
+  {
+    "key": "config/deck/",
+    "flags": 0,
+    "value": ""
+  },
+  {
+    "key": "config/deck/application-docker.yml",
+    "flags": 0,
+    "value": "c2VydmVyOgogIHBvcnQ6IDEzMDAxCgpzcHJpbmc6CiAgY2xvdWQ6CiAgICBjb25maWc6CiAgICAgIGRpc2NvdmVyeToKICAgICAgICBpbnN0YW5jZS1pZDogIiR7c3ByaW5nLmFwcGxpY2F0aW9uLm5hbWV9LWNvbnN1bC0ke3JhbmRvbS52YWx1ZX0i"
+  }
+]

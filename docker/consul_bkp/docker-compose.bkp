@@ -1,0 +1,7 @@
+  consul-importer:
+    image: consul-importer:1.21.5
+    build: docker/consul_bkp
+    depends_on:
+      - consul
+    networks:
+      - micro2025

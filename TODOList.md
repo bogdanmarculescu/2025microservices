@@ -4,32 +4,14 @@
 
 #### Active:
 
-- [x] Gateway
-- [ ] Know if my service is running
-  - [x] Health check - is an individual service running?
-  - [x] Discovery - which services are running - overview
-  - [x] Running multiple instances of the same service
-  - [x] Routing
-  - [x] Load balancing
-  - [x] Gateway for frontend
-  - [ ] I can no longer check the DB
-  - [ ] Consul  only sees 1 instance
+- [ ] mvn spring-boot:build-image - debug ?
 
-
-- [ ] Better handling of startup
-  - [ ] Automated startup
+#### TODO for later:
 
 - [ ] Access control
 - [ ] Smarter handling of logs
-  - [ ] Get access to logs
-  - [ ] Merge logs into one
-- [ ] Docker
-  - [ ] Startup procedure
-  - [x] manual building of containers
-- [ ] mvn spring-boot:build-image - debug ?
-- 
-#### TODO for later:
-- [ ] docker compose
+    - [ ] Get access to logs
+    - [ ] Merge logs into one
 
 
 
@@ -55,3 +37,22 @@
     - [x] Handling host
     - [x] handling ports
 
+#### Lecture 16
+- [x] Gateway
+- [x] Know if my service is running
+    - [x] Health check - is an individual service running?
+    - [x] Discovery - which services are running - overview
+    - [x] Running multiple instances of the same service
+    - [x] Routing
+    - [x] Load balancing
+    - [x] Gateway for frontend
+    - [x] Fixed routing to allow DB checking
+    - [x] Consul sees  instances with  different  names
+- [x] Adjust gateway to handle resolver calls
+- [x] Docker
+    - [x] Startup procedure
+    - [x] manual building of containers
+    - [x] docker compose
+
+- [x] Better handling of startup
+    - [x] Automated startup

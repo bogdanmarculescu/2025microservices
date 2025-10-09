@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: deck
+  config:
+    import: "optional:consul:"
+  cloud:
+    consul:
+      host: localhost
+      port: 8500

@@ -19,5 +19,6 @@ spring:
         register: true
         prefer-ip-address: true
         health-check-interval: 10s
+        instance-id: "${spring.application.name}-${random.value}"
 amqp.queue.name: resolver-queue
 amqp.exchange.name: round.exchange
