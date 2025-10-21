@@ -4,6 +4,8 @@ server:
 spring:
   application:
     name: resolver
+  config:
+    import: "optional:consul:"
 
   datasource:
     driver-class-name: org.postgresql.Driver

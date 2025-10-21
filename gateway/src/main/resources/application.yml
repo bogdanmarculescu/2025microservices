@@ -27,7 +27,7 @@ spring:
             - id: deck
               uri: lb://deck/
               predicates:
-                - Path=/api/deck
+                - Path=/api/deck/**
             - id: round
               uri: lb://round/
               predicates:
@@ -43,7 +43,9 @@ spring:
           globalcors:
             corsConfigurations:
               '[/**]':
-                allowedOrigins: "http://localhost:5173"
+                allowedOriginPatterns:
+                - "http://localhost:5173"
+                - "*"
                 allowedHeaders: "*"
                 allowedMethods:
                 - "GET"

@@ -11,7 +11,7 @@ services:
 
   consul-importer:
     image: consul-importer
-    build: ./docker/consul
+    build: ./consul
     depends_on:
       - consul
     networks:
@@ -56,7 +56,7 @@ services:
 
   gateway:
     image: gateway:0.0.1-SNAPSHOT
-    build: ./gateway
+    build: ../gateway
     container_name: gateway
     environment:
       - SPRING_PROFILE_ACTIVE=docker
@@ -70,7 +70,7 @@ services:
 
   round:
     image: round:0.0.1-SNAPSHOT
-    build: ./round
+    build: ../round
     container_name: round
     expose:
       - "8000"
@@ -85,7 +85,7 @@ services:
 
   deck:
     image: deck:0.0.1-SNAPSHOT
-    build: ./deck
+    build: ../deck
     environment:
       SPRING_PROFILES_ACTIVE: "docker"
       SPRING_CONFIG_IMPORT: "optional:consul:"
@@ -99,7 +99,7 @@ services:
 
   automaplayer:
     image: automaplayer:0.0.1-SNAPSHOT
-    build: ./automaplayer
+    build: ../automaplayer
     expose:
       - "8003"
     depends_on:
@@ -109,7 +109,7 @@ services:
 
   resolver:
     image: resolver:0.0.1-SNAPSHOT
-    build: ./resolver
+    build: ../resolver
     depends_on:
       - consul
       - rabbitmq
@@ -123,7 +123,7 @@ services:
 
   frontend:
     image: frontend:0.1
-    build: ./frontend
+    build: ../frontend
     ports:
       - "5173:5173"
     networks:

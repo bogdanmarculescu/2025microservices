@@ -132,7 +132,10 @@ What is does:
 
 Adding consul:
 ```
-docker run -d --rm --name=consul \
+docker run  \
+-d  \
+--rm  \
+--name=consul \
 -p 8500:8500 \
 -p 8600:8600/udp \
 --network=micro2025 \

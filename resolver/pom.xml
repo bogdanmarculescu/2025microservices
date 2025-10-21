@@ -128,12 +128,6 @@
                             <artifactId>lombok</artifactId>
                         </exclude>
                     </excludes>
-                    <image>
-                        <builder>paketobuildpacks/builder-jammy-full:latest</builder>
-                        <env>
-                            <BP_JVM_VERSION>21</BP_JVM_VERSION>
-                        </env>
-                    </image>
                 </configuration>
             </plugin>
         </plugins>
