@@ -2,7 +2,7 @@ Topics we've covered:
 
 1. [x] Introduction
 2. [x] Starting new SpringBoot services
-3. [ ] Domain and Scaling
+3. [x] Domain and Scaling
 4. [x] Synchronous communication - REST communication between two SpringBoot services
 5. [x] Asynchronous communication between two SpringBoot services
    1. [x] Domain, and information flow

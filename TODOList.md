@@ -62,5 +62,3 @@
 #### Lecture  20
 - [x] Access control
 
-Code 1: 2242
-Code 2: 6283
