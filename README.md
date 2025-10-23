@@ -24,15 +24,15 @@
         ```
       - scaling for several Resolvers
         ``` 
-          docker  compose  up scale resolver=3
+          docker  compose  up --scale resolver=3
         ```
       - in detached mode
         ``` 
-          docker  compose  up scale resolver=3 -d
+          docker  compose  up --scale resolver=3 -d
         ```
       - while forcing a build
         ``` 
-          docker  compose  up scale resolver=3  --build -d
+          docker  compose  up --scale resolver=3  --build -d
         ```
       - from a specific file
         ``` 
