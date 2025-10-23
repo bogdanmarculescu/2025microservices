@@ -1,0 +1,211 @@
+{
+	"info": {
+		"_postman_id": "50863df0-ff3f-4b2c-93d4-e8eaca02c1ee",
+		"name": "Initial tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21712154",
+		"_collection_link": "https://mikrotjenester.postman.co/workspace/2025-micro~07104bcd-2608-4bd0-b5eb-2bc6561db8fb/collection/21712154-50863df0-ff3f-4b2c-93d4-e8eaca02c1ee?action=share&source=collection_link&creator=21712154"
+	},
+	"item": [
+		{
+			"name": "Automa cards",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"id\": 42,\n  \"playerCards\": {\n    \"1\": {\n      \"id\": 33,\n      \"value\": 3,\n      \"suite\": \"CLUBS\",\n      \"filename\": \"3_of_clubs.svg\"\n    },\n    \"2\": {\n      \"id\": 13,\n      \"value\": 3,\n      \"suite\": \"SPADES\",\n      \"filename\": \"3_of_spades.svg\"\n    },\n    \"3\": {\n      \"id\": 23,\n      \"value\": 3,\n      \"suite\": \"DIAMONDS\",\n      \"filename\": \"3_of_diamonds.svg\"\n    }\n  },\n  \"automaCards\": {\n    \"1\": {\n      \"id\": 24,\n      \"value\": 4,\n      \"suite\": \"DIAMONDS\",\n      \"filename\": \"4_of_diamonds.svg\"\n    },\n    \"2\": {\n      \"id\": 32,\n      \"value\": 2,\n      \"suite\": \"CLUBS\",\n      \"filename\": \"2_of_clubs.svg\"\n    },\n    \"3\": {\n      \"id\": 22,\n      \"value\": 2,\n      \"suite\": \"DIAMONDS\",\n      \"filename\": \"2_of_diamonds.svg\"\n    }\n  },\n  \"playerCard\": null,\n  \"automaCard\": null,\n  \"playerBid\": null,\n  \"automaBid\": null,\n  \"topic\": {\n    \"id\": 42,\n    \"value\": 2,\n    \"suite\": \"HEARTS\",\n    \"filename\": \"2_of_hearts.svg\"\n  }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8003/api/automa/playCards",
+					"host": [
+						"localhost"
+					],
+					"port": "8003",
+					"path": [
+						"api",
+						"automa",
+						"playCards"
+					]
+				},
+				"description": "Initial test for automa player"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8005/api/resolver/outcomes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8005/api/resolver/outcomes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8005",
+					"path": [
+						"api",
+						"resolver",
+						"outcomes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "nonSec",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8100/api/resolver/outcomes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8100",
+					"path": [
+						"api",
+						"resolver",
+						"outcomes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "secured-fail",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8100/api/secured/outcomes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8100",
+					"path": [
+						"api",
+						"secured",
+						"outcomes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "secured-pass",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJQLUJhZ24tUlBhU1VsTTZwSThRdjBTRHFxZDh6TnRGdXBLQVV4dGt2WGVnIn0.eyJleHAiOjE3NjExNDU1NjMsImlhdCI6MTc2MTE0NTI2MywianRpIjoib25ydHJvOmE4YjEyYWZkLWY4ZWYtZDljYy0yMDY0LTU4Mzc0NjA2Njk3ZSIsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MC9yZWFsbXMvbWljcm8yMDI1IiwiYXVkIjoiYWNjb3VudCIsInN1YiI6ImE5N2Y5YTdhLTBjYTYtNDFjMi1hMTQ5LTk4MzYyMjQ3ZGYzOCIsInR5cCI6IkJlYXJlciIsImF6cCI6InJlc29sdmVyLXYxIiwic2lkIjoiMWFhMjliNTUtYzIyZS04OTFjLThmMDMtNGE5MGE1ZTdhM2Y5IiwiYWNyIjoiMSIsImFsbG93ZWQtb3JpZ2lucyI6WyJodHRwOi8vMC4wLjAuMDo4MTAwIl0sInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJQTEFZRVIiLCJvZmZsaW5lX2FjY2VzcyIsImRlZmF1bHQtcm9sZXMtbWljcm8yMDI1IiwidW1hX2F1dGhvcml6YXRpb24iXX0sInJlc291cmNlX2FjY2VzcyI6eyJhY2NvdW50Ijp7InJvbGVzIjpbIm1hbmFnZS1hY2NvdW50IiwibWFuYWdlLWFjY291bnQtbGlua3MiLCJ2aWV3LXByb2ZpbGUiXX19LCJzY29wZSI6ImVtYWlsIHByb2ZpbGUiLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwibmFtZSI6IkFsIFRlc3RlciIsInByZWZlcnJlZF91c2VybmFtZSI6ImFqdGVzdGVyIiwiZ2l2ZW5fbmFtZSI6IkFsIiwiZmFtaWx5X25hbWUiOiJUZXN0ZXIiLCJlbWFpbCI6ImF0ZXN0ZXJAdGVzdC5qcCJ9.ud_JIdcvFjg4VE-sdRqBvqmCl1WXQaXet4GAw_5QdDqZejBay50Z7ZQmcQRjYjI81G2TLZmHZHVAnjpqL-yFk4ZIas2N9KnL3sj4V7pz9eEeYVr1q_SWTob7cIeeziUX6hptj6-qGydEaHTVj0BCqSG7Irwu19QPE8uetba2gwWLxaQ-xpjlF2ihRgqNfOjpCMpPuB9Y7cpgQ1Kq7YAJKOfNjhA2uySW06p77NTP7BYdCloFSqRpiguZYWS0zwK2PjWTv-Er1lgY2ztv5lg2wkwRAntQGV-SR_HnaRjClyC0HwuNEbytHlspzYLmsnM4XxLkLm2c4SW68Fshe1N2FA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8100/api/secured/outcomes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8100",
+					"path": [
+						"api",
+						"secured",
+						"outcomes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get token",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "client_id",
+							"value": "resolver-v1",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "ajtester",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "qSU34EtbB4MQO1F7y99Lu37E2EWKtZK1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/realms/micro2025/protocol/openid-connect/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"realms",
+						"micro2025",
+						"protocol",
+						"openid-connect",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Verify Keycloak",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/realms/micro2025/protocol/openid-connect/certs",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"realms",
+						"micro2025",
+						"protocol",
+						"openid-connect",
+						"certs"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
