@@ -9,13 +9,13 @@ Topics we've covered:
    2. [x] Slow or broken communication
    3. [x] Asynchronous communication overview
 6. [x] Containerization - Docker
-7. [ ] Gateway - Access to the system
-8. [ ] Centralized configuration
-9. [ ] Centralized logging
-10. [ ] More Docker - Docker compose
-11. [ ] Software Quality - Testing and Cucumber
-12. [ ] Spring Security
-13. [ ] Orchestration, Deployment
+7. [x] Gateway - Access to the system
+8. [x] Centralized configuration
+9. [x] More Docker - Docker compose
+10. [x] Software Quality - Testing and Cucumber
+11. [x] Spring Security
+12. [x] Orchestration, Deployment - Docker compose - and scaling
+13. [ ] Centralized logging
 
 
 Lecture Code

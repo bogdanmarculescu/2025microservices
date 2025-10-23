@@ -8,7 +8,6 @@
 
 #### TODO for later:
 
-- [ ] Access control
 - [ ] Smarter handling of logs
     - [ ] Get access to logs
     - [ ] Merge logs into one
@@ -57,6 +56,11 @@
 - [x] Better handling of startup
     - [x] Automated startup
 
+#### Lecture 18 
+- [x] Testing with Cucumber
+
+#### Lecture  20
+- [x] Access control
 
 Code 1: 2242
 Code 2: 6283
