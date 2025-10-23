@@ -2,7 +2,7 @@ Topics we've covered:
 
 1. [x] Introduction
 2. [x] Starting new SpringBoot services
-3. [ ] Domain and Scaling
+3. [x] Domain and Scaling
 4. [x] Synchronous communication - REST communication between two SpringBoot services
 5. [x] Asynchronous communication between two SpringBoot services
    1. [x] Domain, and information flow
@@ -17,8 +17,3 @@ Topics we've covered:
 12. [x] Orchestration, Deployment - Docker compose - and scaling
 13. [ ] Centralized logging
 
-
-Lecture Code
-odd.himolde.no/elf
-
-PEN9 : ZR64
