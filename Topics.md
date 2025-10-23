@@ -17,8 +17,3 @@ Topics we've covered:
 12. [x] Orchestration, Deployment - Docker compose - and scaling
 13. [ ] Centralized logging
 
-
-Lecture Code
-odd.himolde.no/elf
-
-PEN9 : ZR64
