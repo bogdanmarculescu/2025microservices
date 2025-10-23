@@ -1,6 +1,45 @@
 2025 - PG3402 - Microservices
 
-Table of contents:
+# Table of contents:
+
+- [Starting up](#starting-up).
+- [Overview of the topics covered](#overview-of-the-topics-covered).
+- 
+
+## Starting Up
+
+#### Simple startup:
+
+1. Switch to Docker folder 
+    ```
+    cd docker/
+   ```
+   2. Startup:
+      - one  instance of each service
+        ``` 
+          docker  compose  up
+        ```
+      - scaling for several Resolvers
+        ``` 
+          docker  compose  up scale resolver=3
+        ```
+      - in detached mode
+        ``` 
+          docker  compose  up scale resolver=3 -d
+        ```
+      - while forcing a build
+        ``` 
+          docker  compose  up scale resolver=3  --build -d
+        ```
+      - from a specific file
+        ``` 
+          docker compose \
+            -f docker-compose-v3.yml \
+            up \
+            --scale resolver=3 \
+            --build \
+            -d
+        ```
 
 ## Overview of the topics covered
 
