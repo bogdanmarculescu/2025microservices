@@ -1,6 +1,3 @@
-server:
-  port: 8006
-
 spring:
   application:
     name: resolver
@@ -8,19 +5,39 @@ spring:
     import: "optional:consul:"
 
   datasource:
-    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://postgresresolver:5432/resolverdb
+    username: serviceuser
+    password: servicepwd
 
   jpa:
     hibernate:
       ddl-auto: update
-    show-sql: true
 
   cloud:
     consul:
+      host: consul
+      port: 8500
       discovery:
         register: true
-        prefer-ip-address: true
+        service-name: resolver
+        health-check-path: /actuator/health
         health-check-interval: 10s
-        instance-id: "${spring.application.name}-${random.value}"
-amqp.queue.name: resolver-queue
-amqp.exchange.name: round.exchange
+        prefer-ip-address: true
+      config:
+        enabled: true
+
+  rabbitmq:
+    host: rabbitmq
+    port: 5672
+    username: guest
+    password: guest
+
+logging:
+  level:
+    org.springframework: INFO
+
+amqp:
+  exchange:
+    name: round.exchange
+  queue:
+    name: rounds.complete

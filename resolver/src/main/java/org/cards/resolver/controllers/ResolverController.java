@@ -16,11 +16,11 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/resolver")
+@RequestMapping("/api")
 public class ResolverController {
     private final ResolverServiceImplAdvanced resolverService;
 
-    @GetMapping("/outcome/{id}")
+    @GetMapping("/resolver/outcome/{id}")
     public String getOutcome(@PathVariable Long id) {
         Round outcome = resolverService.getRoundById(id);
         log.info("getOutcome {}", outcome);
@@ -29,8 +29,13 @@ public class ResolverController {
         return result;
     }
 
-    @GetMapping("/outcomes")
+    @GetMapping("/resolver/outcomes")
     public List<Round> getOutcomes() {
+        return resolverService.getRounds();
+    }
+
+    @GetMapping("/secured/outcomes")
+    public List<Round> getSecuredOutcomes() {
         return resolverService.getRounds();
     }
 }

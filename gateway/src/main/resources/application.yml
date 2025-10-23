@@ -5,6 +5,11 @@ spring:
     name: gateway
   config:
     import: "optional:consul:"
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://keycloak:8080/realms/micro2025
   cloud:
     consul:
       enabled: true
@@ -25,34 +30,26 @@ spring:
         webflux:
           routes:
             - id: deck
-              uri: lb://deck/
+              uri: lb://deck
               predicates:
                 - Path=/api/deck/**
             - id: round
-              uri: lb://round/
+              uri: lb://round
               predicates:
                 - Path=/api/round, /api/round/**
             - id: automaplayer
-              uri: lb://automaplayer/
+              uri: lb://automaplayer
               predicates:
                 - Path=/api/automa/**
             - id: resolver
-              uri: lb://resolver/
+              uri: lb://resolver
               predicates:
                 - Path=/api/resolver/**
-          globalcors:
-            corsConfigurations:
-              '[/**]':
-                allowedOriginPatterns:
-                - "http://localhost:5173"
-                - "*"
-                allowedHeaders: "*"
-                allowedMethods:
-                - "GET"
-                - "POST"
-                - "PUT"
-                - "OPTIONS"
-                allowCredentials: true
+            - id: resolversec
+              uri: lb://resolver
+              predicates:
+                - Path=/api/secured/**
+
 management:
   endpoints:
     web:
