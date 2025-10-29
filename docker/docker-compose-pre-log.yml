@@ -76,49 +76,6 @@ services:
     networks:
       - micro2025
 
-  elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:8.13.4
-    container_name: elasticsearch
-    environment:
-      - discovery.type=single-node
-      - "ES_JAVA_OPTS=-Xms1g -Xmx1g"
-      - xpack.security.enabled=false
-    healthcheck:
-      test: [ "CMD-SHELL", "curl -s http://localhost:9200/_cluster/health | grep '\"status\":\"green\"' || exit 1" ]
-      interval: 10s
-      retries: 10
-    volumes:
-      - esdata:/usr/share/elasticsearch/data
-    ports:
-      - "9200:9200"
-    networks:
-      - micro2025
-
-  kibana:
-    image: docker.elastic.co/kibana/kibana:8.13.4
-    container_name: kibana
-    environment:
-      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
-    ports:
-      - "5601:5601"
-    depends_on:
-      - elasticsearch
-    networks:
-      - micro2025
-
-  logstash:
-    image: docker.elastic.co/logstash/logstash:8.13.4
-    container_name: logstash
-    volumes:
-      - ./logstash/pipeline:/usr/share/logstash/pipeline:ro
-    ports:
-      - "5044:5044" # beats input
-      - "5000:5000"
-    depends_on:
-      - elasticsearch
-    networks:
-      - micro2025
-
   rabbitmq:
     image: rabbitmq:4-management
     container_name: rabbitmq
@@ -160,15 +117,12 @@ services:
   deck:
     image: deck:0.0.1-SNAPSHOT
     build: ../deck
-    logging:
-      driver: "json-file"
     environment:
       SPRING_PROFILES_ACTIVE: "docker"
       SPRING_CONFIG_IMPORT: "optional:consul:"
       SPRING_CLOUD_CONSUL_HOST: "consul"
     depends_on:
       - consul
-      - logstash
     expose:
       - "8001"
     networks:
@@ -216,4 +170,3 @@ volumes:
   rounds_data:
   resolver_data:
   kc_data:
-  esdata:

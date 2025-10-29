@@ -4,6 +4,8 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.cards.deck.model.Card;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.core.io.ClassPathResource;
 
@@ -16,10 +18,10 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
-@Slf4j
 @Service
 public class CardServiceImpl implements CardService {
 
+    private static final Logger log = LoggerFactory.getLogger(CardServiceImpl.class);
     private final HashMap<Long, Card> deck = new HashMap<>();
 
     public CardServiceImpl(){

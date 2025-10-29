@@ -1,0 +1,20 @@
+filebeat.inputs:
+  - type: docker
+    containers.ids: []
+    combine_partial: true
+    json.message_key: message
+    json.keys_under_root: false
+    processors:
+      - add_docker_metadata: ~
+      - add_host_metadata: ~
+      - add_cloud_metadata: ~
+      - add_fields:
+          target: ""
+          fields:
+            service.name: "deck"
+
+output.logstash:
+  hosts: ["logstash:5044"]
+
+logging.level: debug
+logging.to_files: false

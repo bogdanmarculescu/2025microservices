@@ -188,5 +188,9 @@ docker exec -it deck wget -qO- http://consul:8500/v1/kv/config/deck/application-
 
 
 
+Logs:
 
+```
+ls -l /var/lib/docker/containers/$(docker inspect -f '{{.Id}}' docker-deck-1)/*-json.log
+```
 

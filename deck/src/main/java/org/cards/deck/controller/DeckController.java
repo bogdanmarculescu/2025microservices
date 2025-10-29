@@ -21,7 +21,14 @@ public class DeckController {
     @GetMapping
     public HashMap<Long, Card> getResult() {
         //TODO: stop hardcoding stuff, for crying out loud
+        log.info("Getting cards! ====> ");
         return cardService.getCards(7);
+    }
+
+    @GetMapping("/logtest")
+    public String logTest() {
+        log.info("Deck test log at {}", System.currentTimeMillis());
+        return "Logged!";
     }
 
 }
